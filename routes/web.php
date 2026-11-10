@@ -13,6 +13,9 @@ use App\Http\Controllers\GuruBkKarierJepangController;
 use App\Http\Controllers\GuruBkKonselingController;
 use App\Http\Controllers\GuruBkTracerStudyController;
 use App\Http\Controllers\GuruBkVerifikasiAkunSiswaController;
+use App\Http\Controllers\GuruBkAnnouncementController;
+use App\Http\Controllers\GuruBkGalleryController;
+use App\Http\Controllers\PublicGalleryController;
 use App\Http\Controllers\KarierJepangController;
 use App\Http\Controllers\KepalaSekolahKarierJepangController;
 use App\Http\Controllers\KepalaSekolahProgramReportController;
@@ -25,8 +28,11 @@ use App\Http\Controllers\OrangTuaPortalController;
 use App\Http\Controllers\SimulasiFinansialController;
 use App\Http\Controllers\SiswaVerificationController;
 use App\Http\Controllers\TracerStudyController;
+use App\Models\Announcement;
+use App\Models\GalleryAlbum;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +46,18 @@ Route::get('/', function () {
         return redirect()->route('dashboard');
     }
 
-    return view('welcome');
+    $announcements = Schema::hasTable('announcements')
+        ? Announcement::published()->latest('published_at')->limit(4)->get()
+        : collect();
+    $galleryAlbums = Schema::hasTable('gallery_albums')
+        ? GalleryAlbum::published()->with('photos')->latest('event_date')->limit(6)->get()
+        : collect();
+
+    return view('welcome', compact('announcements', 'galleryAlbums'));
 })->name('landing');
+
+Route::get('/dokumentasi/{album:slug}', [PublicGalleryController::class, 'show'])
+    ->name('gallery.show');
 
 // 2. Fitur Informasi Karier Jepang (Publik)
 Route::get('/karier-jepang', [KarierJepangController::class, 'index'])->name('karier-jepang.index');
@@ -340,6 +356,24 @@ Route::middleware(['auth', 'account.status'])->group(function () {
 
     // D.1. Pengelolaan Konseling Digital oleh Guru BK
     Route::middleware('role:guru')->group(function () {
+        Route::get('/dashboard/guru/pengumuman', [GuruBkAnnouncementController::class, 'index'])->name('dashboard.guru.announcements.index');
+        Route::get('/dashboard/guru/pengumuman/buat', [GuruBkAnnouncementController::class, 'create'])->name('dashboard.guru.announcements.create');
+        Route::post('/dashboard/guru/pengumuman', [GuruBkAnnouncementController::class, 'store'])->name('dashboard.guru.announcements.store');
+        Route::get('/dashboard/guru/pengumuman/{announcement}/edit', [GuruBkAnnouncementController::class, 'edit'])->name('dashboard.guru.announcements.edit');
+        Route::put('/dashboard/guru/pengumuman/{announcement}', [GuruBkAnnouncementController::class, 'update'])->name('dashboard.guru.announcements.update');
+        Route::delete('/dashboard/guru/pengumuman/{announcement}', [GuruBkAnnouncementController::class, 'destroy'])->name('dashboard.guru.announcements.destroy');
+
+        Route::get('/dashboard/guru/dokumentasi', [GuruBkGalleryController::class, 'index'])->name('dashboard.guru.gallery.index');
+        Route::get('/dashboard/guru/dokumentasi/buat', [GuruBkGalleryController::class, 'create'])->name('dashboard.guru.gallery.create');
+        Route::post('/dashboard/guru/dokumentasi', [GuruBkGalleryController::class, 'store'])->name('dashboard.guru.gallery.store');
+        Route::get('/dashboard/guru/dokumentasi/{album}', [GuruBkGalleryController::class, 'show'])->name('dashboard.guru.gallery.show');
+        Route::get('/dashboard/guru/dokumentasi/{album}/edit', [GuruBkGalleryController::class, 'edit'])->name('dashboard.guru.gallery.edit');
+        Route::put('/dashboard/guru/dokumentasi/{album}', [GuruBkGalleryController::class, 'update'])->name('dashboard.guru.gallery.update');
+        Route::post('/dashboard/guru/dokumentasi/{album}/photos', [GuruBkGalleryController::class, 'uploadPhotos'])->name('dashboard.guru.gallery.photos.store');
+        Route::put('/dashboard/guru/dokumentasi/{album}/photos/{photo}', [GuruBkGalleryController::class, 'replacePhoto'])->name('dashboard.guru.gallery.photos.update');
+        Route::delete('/dashboard/guru/dokumentasi/{album}/photos/{photo}', [GuruBkGalleryController::class, 'destroyPhoto'])->name('dashboard.guru.gallery.photos.destroy');
+        Route::delete('/dashboard/guru/dokumentasi/{album}', [GuruBkGalleryController::class, 'destroy'])->name('dashboard.guru.gallery.destroy');
+
         Route::get('/dashboard/guru/verifikasi-akun-siswa', [GuruBkVerifikasiAkunSiswaController::class, 'index'])
             ->name('dashboard.guru.verifikasi-akun-siswa.index');
         Route::get('/dashboard/guru/verifikasi-akun-siswa/{verificationRequest}', [GuruBkVerifikasiAkunSiswaController::class, 'show'])

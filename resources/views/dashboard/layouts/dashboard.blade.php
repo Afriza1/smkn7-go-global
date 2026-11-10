@@ -151,6 +151,16 @@
                         <span>Konseling Digital</span>
                     </a>
 
+                    <a href="{{ route('dashboard.guru.announcements.index') }}"
+                       class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all @if(request()->routeIs('dashboard.guru.announcements.*')) font-bold bg-[#155EAA] text-white shadow-sm @else font-semibold text-slate-300 hover:bg-white/10 hover:text-white @endif">
+                        <span class="w-4 text-center text-[#FBBF24]" aria-hidden="true">✦</span><span>Pengumuman</span>
+                    </a>
+
+                    <a href="{{ route('dashboard.guru.gallery.index') }}"
+                       class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all @if(request()->routeIs('dashboard.guru.gallery.*')) font-bold bg-[#155EAA] text-white shadow-sm @else font-semibold text-slate-300 hover:bg-white/10 hover:text-white @endif">
+                        <span class="w-4 text-center text-[#FBBF24]" aria-hidden="true">▧</span><span>Dokumentasi</span>
+                    </a>
+
                     <a href="{{ route('dashboard.guru.tracer-study.index') }}"
                        class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all @if(request()->routeIs('dashboard.guru.tracer-study*') && !request()->routeIs('dashboard.guru.tracer-study.statistics')) font-bold bg-[#155EAA] text-white shadow-sm @else font-semibold text-slate-300 hover:bg-white/10 hover:text-white @endif">
                         <svg class="w-4 h-4 flex-shrink-0 @if(request()->routeIs('dashboard.guru.tracer-study*') && !request()->routeIs('dashboard.guru.tracer-study.statistics')) text-white @else text-[#FBBF24] @endif" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 19V5m0 14h16M8 15v-3m4 3V8m4 7v-5m4 5V4"/></svg>

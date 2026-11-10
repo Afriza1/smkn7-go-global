@@ -280,7 +280,7 @@
             </button>
         </div>
 
-        <div class="py-2 text-xs sm:text-sm text-slate-600 leading-relaxed space-y-3" id="modal-announcement-body">
+        <div class="py-2 text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line" id="modal-announcement-body">
             <p>Memuat isi pengumuman...</p>
         </div>
 

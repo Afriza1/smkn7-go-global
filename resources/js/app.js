@@ -324,41 +324,8 @@ window.selectAlumni = function (index) {
    4. GALLERY FILTERING & LIGHTBOX
    ========================================================================== */
 
-const galleryItemsData = [
-    {
-        category: 'Tahap Seleksi',
-        title: 'Tes Fisik Peserta',
-        image: '/images/test-fisik.jpg',
-        desc: 'Kegiatan tes fisik peserta sebagai bagian dari tahapan seleksi Program Go Global.'
-    },
-    {
-        category: 'Tahap Seleksi',
-        title: 'Psikotes Peserta',
-        image: '/images/psikotes.jpg',
-        desc: 'Pelaksanaan tes psikologi untuk mengenali kesiapan dan potensi peserta dalam mengikuti Program Go Global.'
-    },
-    {
-        category: 'Kesehatan',
-        title: 'Pemeriksaan Kesehatan (MCU)',
-        image: '/images/mcu.jpg',
-        desc: 'Pemeriksaan kesehatan atau Medical Check Up (MCU) sebagai bagian dari persiapan peserta mengikuti program.'
-    },
-    {
-        category: 'Pembekalan',
-        title: 'Pembekalan Kewiraan',
-        image: '/images/kewiraan.jpg',
-        desc: 'Kegiatan penguatan kewiraan untuk membangun karakter, kedisiplinan, dan wawasan kebangsaan peserta.'
-    },
-    {
-        category: 'Pembekalan',
-        title: 'Penguatan Bahasa Jepang',
-        image: '/images/penguatan-bahasa-jepang.jpg',
-        desc: 'Kegiatan pembelajaran dan penguatan kemampuan bahasa Jepang sebagai bekal komunikasi peserta dalam kehidupan dan lingkungan kerja di Jepang.'
-    }
-];
-
 let activeLightboxIndex = 0;
-const visibleGalleryItemsData = galleryItemsData;
+const galleryItemsData = () => [...document.querySelectorAll('.gallery-lightbox-item')];
 
 window.filterGallery = function (category) {
     const items = document.querySelectorAll('#gallery-grid .gallery-item');
@@ -385,7 +352,13 @@ window.filterGallery = function (category) {
     });
 };
 
+document.addEventListener('click', (event) => {
+    const filterButton = event.target.closest('#gallery-filter-tabs [data-filter]');
+    if (filterButton) window.filterGallery(filterButton.dataset.filter);
+});
+
 window.openGalleryLightbox = function (index) {
+    if (!galleryItemsData()[index]) return;
     activeLightboxIndex = index;
     updateLightboxContent();
     const modal = document.getElementById('gallery-lightbox');
@@ -406,17 +379,21 @@ window.closeGalleryLightbox = function () {
 };
 
 window.nextGalleryImage = function () {
-    activeLightboxIndex = (activeLightboxIndex + 1) % visibleGalleryItemsData.length;
+    const items = galleryItemsData();
+    if (!items.length) return;
+    activeLightboxIndex = (activeLightboxIndex + 1) % items.length;
     updateLightboxContent();
 };
 
 window.prevGalleryImage = function () {
-    activeLightboxIndex = (activeLightboxIndex - 1 + visibleGalleryItemsData.length) % visibleGalleryItemsData.length;
+    const items = galleryItemsData();
+    if (!items.length) return;
+    activeLightboxIndex = (activeLightboxIndex - 1 + items.length) % items.length;
     updateLightboxContent();
 };
 
 function updateLightboxContent() {
-    const item = visibleGalleryItemsData[activeLightboxIndex];
+    const item = galleryItemsData()[activeLightboxIndex]?.dataset;
     if (!item) return;
 
     const badge = document.getElementById('lightbox-badge');
@@ -424,13 +401,13 @@ function updateLightboxContent() {
     const image = document.getElementById('lightbox-image');
     const desc = document.getElementById('lightbox-desc');
 
-    if (badge) badge.innerText = item.category;
-    if (title) title.innerText = item.title;
+    if (badge) badge.innerText = item.category || '';
+    if (title) title.innerText = item.title || '';
     if (image) {
-        image.src = item.image;
-        image.alt = item.title;
+        image.src = item.image || '';
+        image.alt = item.title || '';
     }
-    if (desc) desc.innerText = item.desc;
+    if (desc) desc.innerText = item.desc || '';
 }
 
 // Lightbox keyboard arrows
@@ -496,6 +473,24 @@ window.updateFinancialSimulation = function () {
 /* ==========================================================================
    6. MODALS POPUP CONTROLLER
    ========================================================================== */
+
+window.openPrincipalRemarksModal = function () {
+    const modal = document.getElementById('principal-remarks-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+};
+
+window.closePrincipalRemarksModal = function () {
+    const modal = document.getElementById('principal-remarks-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+};
 
 window.openLoginModal = function () {
     const modal = document.getElementById('login-modal');
@@ -614,75 +609,16 @@ window.handleCareerCounselingSubmit = function (e) {
     }
 };
 
-const announcementsContent = {
-    1: {
-        category: 'Seleksi & Karir',
-        date: '04 November 2026',
-        title: 'Pembukaan Seleksi Program Magang Industri Jepang Batch 2026/2027',
-        body: `
-            <p>SMKN 7 Jember secara resmi membuka pendaftaran seleksi awal program magang kerja ke Jepang untuk bidang Teknik Manufaktur, Mekatronika, dan Pertanian Modern.</p>
-            <p><strong>Persyaratan Utama:</strong></p>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>Siswa kelas XII atau alumni lulusan maksimal 3 tahun terakhir.</li>
-                <li>Tinggi badan proporsional, tidak buta warna, dan sehat jasmani/rohani.</li>
-                <li>Mendapat persetujuan dan izin tertulis dari orang tua/wali murid.</li>
-                <li>Bersedia mengikuti kelas diklat bahasa Jepang intensif selama 6 bulan.</li>
-            </ul>
-            <p>Pendaftaran tahap awal dapat dilakukan melalui ruang Bimbingan Konseling (BK) atau kanal bimbingan digital di website ini sebelum tanggal 20 November 2026.</p>
-        `
-    },
-    2: {
-        category: 'Diklat Vokasi',
-        date: '01 November 2026',
-        title: 'Pelatihan Intensif Bahasa Jepang (N4/N5) & Etika Budaya Kerja Kaizen',
-        body: `
-            <p>Program kursus intensif bahasa Jepang akan diselenggarakan mulai 15 November 2026. Kelas diadakan setiap hari Senin hingga Kamis (pukul 15.30 - 17.30 WIB) di Laboratorium Bahasa SMKN 7 Jember.</p>
-            <p><strong>Materi Pelatihan:</strong></p>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>Penguasaan Hiragana, Katakana, dan 150 Kanji esensial industri.</li>
-                <li>Simulasi percakapan kerja sehari-hari (Aisatsu, Hou-Ren-So).</li>
-                <li>Latihan soal ujian resmi Japanese Language Proficiency Test (JLPT) N4.</li>
-                <li>Simulasi wawancara kerja teknis dengan instruktur native speaker.</li>
-            </ul>
-        `
-    },
-    3: {
-        category: 'Kesehatan & MCU',
-        date: '28 Oktober 2026',
-        title: 'Sosialisasi Standar Kebugaran Fisik & Skrining Medical Check-Up (MCU)',
-        body: `
-            <p>Pertemuan sosialisasi persiapan MCU dihadiri oleh dokter spesialis okupasi dan tim bimbingan konseling SMKN 7 Jember. Sosialisasi ini bertujuan memberikan edukasi awal kepada calon peserta program Go Global mengenai standar kelayakan medis imigrasi Jepang.</p>
-            <p><strong>Poin Kebugaran Penting:</strong></p>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>Bebas penyakit menular (TBC, Hepatitis B/C, HIV).</li>
-                <li>Rontgen paru-paru bersih tanpa flek atau bekas luka pleura.</li>
-                <li>Tekanan darah normal dan tidak memiliki riwayat asma akut.</li>
-                <li>Edukasi kebiasaan tidak merokok dan menjaga pola istirahat 8 jam.</li>
-            </ul>
-        `
-    },
-    4: {
-        category: 'Kemitraan Global',
-        date: '24 Oktober 2026',
-        title: 'Kunjungan Delegasi Asosiasi Kerja Sama Industri Tokyo ke SMKN 7 Jember',
-        body: `
-            <p>Delegasi pimpinan asosiasi kerja sama industri Tokyo melakukan kunjungan supervisi ke kampus SMKN 7 Jember. Dalam kunjungan ini, perwakilan Jepang meninjau workshop mesin CNC, lab otomotif, serta sarana budidaya pertanian modern.</p>
-            <p>Hasil pertemuan menyepakati kuota penempatan 60 lulusan SMKN 7 Jember untuk periode 2026/2027 dengan skema Tokutei Ginou dan Magang Terbimbing, disertai jaminan perlindungan hak pekerja dan subsidi tempat tinggal.</p>
-        `
-    }
-};
-
-window.openAnnouncementModal = function (id) {
-    const item = announcementsContent[id];
-    if (!item) return;
-
+document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-announcement-open]');
+    if (!trigger) return;
     window.openAnnouncementModalCustom({
-        category: item.category,
-        title: item.title,
-        date: item.date,
-        body: item.body
+        category: trigger.dataset.category,
+        title: trigger.dataset.title,
+        date: trigger.dataset.date,
+        body: trigger.dataset.body,
     });
-};
+});
 
 window.openAnnouncementModalCustom = function ({ category, title, date, body }) {
     const modal = document.getElementById('announcement-modal');
@@ -691,10 +627,10 @@ window.openAnnouncementModalCustom = function ({ category, title, date, body }) 
     const dateEl = document.getElementById('modal-announcement-date');
     const bodyEl = document.getElementById('modal-announcement-body');
 
-    if (catEl) catEl.innerHTML = category;
-    if (titleEl) titleEl.innerText = title;
-    if (dateEl) dateEl.innerText = date;
-    if (bodyEl) bodyEl.innerHTML = body;
+    if (catEl) catEl.textContent = category || '';
+    if (titleEl) titleEl.textContent = title || '';
+    if (dateEl) dateEl.textContent = date || '';
+    if (bodyEl) bodyEl.textContent = body || '';
 
     if (modal) {
         modal.classList.remove('hidden');
