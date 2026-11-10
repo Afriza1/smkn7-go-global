@@ -1,0 +1,266 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Merriweather', Georgia, serif;
+
+    --color-navy: #0F2F5F;
+    --color-navy-dark: #0A1E3F;
+    --color-primary: #155EAA;
+    --color-primary-dark: #0d4685;
+    --color-primary-light: #e0edfb;
+    --color-green: #166534;
+    --color-green-dark: #14532d;
+    --color-green-light: #dcfce7;
+    --color-gold: #FBBF24;
+    --color-gold-dark: #d97706;
+    --color-gold-light: #fef3c7;
+    --color-paper: #F8FAFC;
+    --color-text-main: #1E293B;
+    --color-text-muted: #64748B;
+    --color-border-subtle: #E2E8F0;
+}
+
+:root {
+    --navy: #0F2F5F;
+    --primary: #155EAA;
+    --green: #166534;
+    --gold: #FBBF24;
+    --paper: #F8FAFC;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+}
+
+body {
+    margin: 0;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Custom focus styles for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #155EAA;
+    outline-offset: 2px;
+}
+
+/* Hero section specific styling - Vivid Fresh Green Japan-Inspired Theme */
+.hero-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #0f3f22;
+}
+
+.hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% 82%;
+}
+
+@media (min-width: 1024px) {
+    .hero-bg-img {
+        object-position: 76% 82%;
+    }
+}
+
+/* Vivid green gradient overlay:
+   - Rich dark forest green on the far left ensures effortless text legibility
+   - Smooth, multi-stop gradual transition across the canvas
+   - Seamlessly blends into the bright Japanese scene with zero vertical banding
+*/
+.hero-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(10, 46, 23, 0.96) 0%,
+        rgba(12, 52, 26, 0.90) 22%,
+        rgba(15, 65, 32, 0.78) 34%,
+        rgba(18, 78, 38, 0.58) 44%,
+        rgba(22, 92, 45, 0.36) 54%,
+        rgba(25, 105, 52, 0.18) 64%,
+        rgba(28, 120, 58, 0.06) 74%,
+        transparent 84%
+    );
+}
+
+@media (max-width: 1023px) {
+    .hero-gradient-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(10, 46, 23, 0.94) 0%,
+            rgba(12, 52, 26, 0.88) 35%,
+            rgba(15, 65, 32, 0.60) 55%,
+            rgba(18, 78, 38, 0.30) 70%,
+            rgba(22, 92, 45, 0.10) 82%,
+            transparent 92%
+        );
+    }
+}
+
+/* Pastel tones for Akses Cepat 10 Feature Cards */
+.tone-sky {
+    background-color: #F0F9FF;
+    border-color: #BAE6FD;
+}
+.tone-sky:hover {
+    background-color: #E0F2FE;
+    border-color: #7DD3FC;
+}
+
+.tone-emerald {
+    background-color: #F0FDF4;
+    border-color: #BBF7D0;
+}
+.tone-emerald:hover {
+    background-color: #DCFCE7;
+    border-color: #86EFAC;
+}
+
+.tone-amber {
+    background-color: #FFFBEB;
+    border-color: #FDE68A;
+}
+.tone-amber:hover {
+    background-color: #FEF3C7;
+    border-color: #FCD34D;
+}
+
+.tone-indigo {
+    background-color: #EEF2FF;
+    border-color: #C7D2FE;
+}
+.tone-indigo:hover {
+    background-color: #E0E7FF;
+    border-color: #A5B4FC;
+}
+
+.tone-rose {
+    background-color: #FFF1F2;
+    border-color: #FECDD3;
+}
+.tone-rose:hover {
+    background-color: #FFE4E6;
+    border-color: #FDA4AF;
+}
+
+.tone-teal {
+    background-color: #F0FDFA;
+    border-color: #99F6E4;
+}
+.tone-teal:hover {
+    background-color: #CCFBF1;
+    border-color: #5EEAD4;
+}
+
+.tone-purple {
+    background-color: #FAF5FF;
+    border-color: #E9D5FF;
+}
+.tone-purple:hover {
+    background-color: #F3E8FF;
+    border-color: #D8B4FE;
+}
+
+.tone-orange {
+    background-color: #FFF7ED;
+    border-color: #FED7AA;
+}
+.tone-orange:hover {
+    background-color: #FFEDD5;
+    border-color: #FDBA74;
+}
+
+.tone-cyan {
+    background-color: #ECFEFF;
+    border-color: #A5F3FC;
+}
+.tone-cyan:hover {
+    background-color: #CFFAFE;
+    border-color: #67E8F9;
+}
+
+.tone-slate {
+    background-color: #F8FAFC;
+    border-color: #E2E8F0;
+}
+.tone-slate:hover {
+    background-color: #F1F5F9;
+    border-color: #CBD5E1;
+}
+
+/* Soft transition utilities */
+.card-hover-lift {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.card-hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(15, 47, 95, 0.08), 0 8px 10px -6px rgba(15, 47, 95, 0.04);
+}
+
+/* Modal and backdrop animations */
+.modal-backdrop {
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    transition: opacity 0.25s ease-out;
+}
+
+.modal-content-anim {
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease-out;
+}
+
+/* Gallery hover overlay */
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* Search match highlight */
+.search-highlight {
+    background-color: #FEF08A;
+    color: #854D0E;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* Custom scrollbar for dropdown menus */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+}
