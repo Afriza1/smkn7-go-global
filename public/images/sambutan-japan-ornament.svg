@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 440" fill="none" class="w-full h-full">
+    <defs>
+        <!-- Fuji Mountain Gradient -->
+        <linearGradient id="fuji-body" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#D1E7DD" stop-opacity="0.75" />
+            <stop offset="45%" stop-color="#E2E8F0" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#FCFDFD" stop-opacity="0.0" />
+        </linearGradient>
+
+        <!-- Fuji Snow Cap Gradient -->
+        <linearGradient id="fuji-snow" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+            <stop offset="70%" stop-color="#F1F5F9" stop-opacity="0.85" />
+            <stop offset="100%" stop-color="#E2E8F0" stop-opacity="0.6" />
+        </linearGradient>
+
+        <!-- Torii Vermilion Gradient -->
+        <linearGradient id="torii-red" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#B91C1C" />
+            <stop offset="50%" stop-color="#DC2626" />
+            <stop offset="100%" stop-color="#991B1B" />
+        </linearGradient>
+
+        <!-- Pagoda Slate/Green Gradient -->
+        <linearGradient id="pagoda-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#0F3F22" />
+            <stop offset="100%" stop-color="#062413" />
+        </linearGradient>
+
+        <!-- Sakura Petal Gradient -->
+        <radialGradient id="sakura-petal" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF1F2" />
+            <stop offset="70%" stop-color="#FCE7F3" />
+            <stop offset="100%" stop-color="#F472B6" />
+        </radialGradient>
+
+        <!-- Sakura Deep Flower -->
+        <radialGradient id="sakura-center" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FB7185" />
+            <stop offset="60%" stop-color="#F43F5E" />
+            <stop offset="100%" stop-color="#BE123C" />
+        </radialGradient>
+
+        <!-- Reusable 5-petal Sakura Flower -->
+        <g id="sakura-blossom">
+            <ellipse cx="0" cy="-12" rx="6.5" ry="11" fill="url(#sakura-petal)" />
+            <ellipse cx="11.4" cy="-3.7" rx="6.5" ry="11" transform="rotate(72 11.4 -3.7)" fill="url(#sakura-petal)" />
+            <ellipse cx="7.1" cy="9.7" rx="6.5" ry="11" transform="rotate(144 7.1 9.7)" fill="url(#sakura-petal)" />
+            <ellipse cx="-7.1" cy="9.7" rx="6.5" ry="11" transform="rotate(216 -7.1 9.7)" fill="url(#sakura-petal)" />
+            <ellipse cx="-11.4" cy="-3.7" rx="6.5" ry="11" transform="rotate(288 -11.4 -3.7)" fill="url(#sakura-petal)" />
+            <!-- Flower Pistil / Center -->
+            <circle cx="0" cy="0" r="3.2" fill="url(#sakura-center)" />
+            <circle cx="-1.5" cy="-1.5" r="0.8" fill="#FDE047" />
+            <circle cx="1.5" cy="-1.5" r="0.8" fill="#FDE047" />
+            <circle cx="1.8" cy="1.2" r="0.8" fill="#FDE047" />
+            <circle cx="-1.8" cy="1.2" r="0.8" fill="#FDE047" />
+        </g>
+
+        <!-- Small Bud -->
+        <g id="sakura-bud">
+            <path d="M0 0 C-4 -6 -4 -12 0 -16 C4 -12 4 -6 0 0 Z" fill="#FDA4AF" />
+            <path d="M0 -3 C-2 -7 -2 -11 0 -14 C2 -11 2 -7 0 -3 Z" fill="#FFF1F2" />
+        </g>
+    </defs>
+
+    <!-- ================= 1. MOUNT FUJI (TOP-RIGHT SILHOUETTE) ================= -->
+    <g id="mount-fuji" opacity="0.85">
+        <!-- Sun Glow behind Fuji peak -->
+        <circle cx="430" cy="90" r="50" fill="#FEF08A" opacity="0.28" filter="blur(8px)" />
+
+        <!-- Mountain Slope Base -->
+        <path d="M190 310 C 270 240, 340 140, 395 72 L 455 72 C 490 130, 520 220, 550 310 Z" fill="url(#fuji-body)" />
+
+        <!-- Mountain Snow Cap -->
+        <path d="M395 72
+                 C 385 105, 375 125, 360 142
+                 C 375 145, 385 155, 395 170
+                 C 405 152, 415 150, 425 168
+                 C 435 150, 442 155, 450 172
+                 C 460 145, 472 135, 485 145
+                 C 475 118, 465 95, 455 72 Z"
+              fill="url(#fuji-snow)" />
+
+        <!-- Fine Snow Ridges / Flutes -->
+        <path d="M410 75 L 400 135 M425 74 L 420 145 M440 75 L 445 140" stroke="#FFFFFF" stroke-width="2.5" opacity="0.6" stroke-linecap="round" />
+        <path d="M415 90 L 418 155 M435 85 L 432 150" stroke="#CBD5E1" stroke-width="1.8" opacity="0.5" stroke-linecap="round" />
+    </g>
+
+    <!-- ================= 2. TRADITIONAL JAPANESE PAGODA (FIVE-STORY) ================= -->
+    <g id="pagoda" transform="translate(425, 175) scale(0.85)">
+        <!-- Spire / Sorin (Top Finial) -->
+        <line x1="40" y1="-50" x2="40" y2="10" stroke="#D97706" stroke-width="3" />
+        <circle cx="40" cy="-52" r="3.5" fill="#F59E0B" />
+        <circle cx="40" cy="-40" r="4.5" fill="#D97706" />
+        <circle cx="40" cy="-30" r="5.5" fill="#D97706" />
+        <circle cx="40" cy="-20" r="6.5" fill="#D97706" />
+        <circle cx="40" cy="-10" r="7.5" fill="#D97706" />
+        <circle cx="40" cy="0" r="8.5" fill="#D97706" />
+
+        <!-- Roof 1 (Top Tier) -->
+        <path d="M10 22 C 25 16, 40 14, 55 16 C 70 16, 85 22, 90 26 C 75 22, 40 20, -10 26 C -5 22, 0 16, 10 22 Z" fill="#14532D" />
+        <path d="M-8 25 C 20 18, 60 18, 88 25 L 80 28 C 50 22, 30 22, 0 28 Z" fill="#0F3F22" />
+        <rect x="26" y="28" width="28" height="18" fill="#1E293B" />
+        <!-- Railing / Balcony -->
+        <rect x="22" y="44" width="36" height="4" fill="#B91C1C" />
+
+        <!-- Roof 2 -->
+        <path d="M0 55 C 20 47, 40 45, 60 47 C 75 47, 95 55, 100 59 C 85 55, 40 53, -20 59 C -15 55, -10 47, 0 55 Z" fill="#14532D" />
+        <path d="M-18 58 C 20 50, 60 50, 98 58 L 90 62 C 50 55, 30 55, -10 62 Z" fill="#0F3F22" />
+        <rect x="22" y="62" width="36" height="20" fill="#1E293B" />
+        <rect x="18" y="80" width="44" height="4" fill="#B91C1C" />
+
+        <!-- Roof 3 -->
+        <path d="M-10 92 C 15 82, 40 80, 65 82 C 85 82, 110 92, 115 97 C 95 91, 40 89, -35 97 C -28 91, -20 82, -10 92 Z" fill="#14532D" />
+        <path d="M-33 96 C 15 87, 65 87, 113 96 L 105 101 C 60 93, 20 93, -25 101 Z" fill="#0F3F22" />
+        <rect x="18" y="101" width="44" height="22" fill="#1E293B" />
+        <rect x="14" y="121" width="52" height="4" fill="#B91C1C" />
+
+        <!-- Roof 4 -->
+        <path d="M-22 135 C 10 123, 40 121, 70 123 C 95 123, 125 135, 132 141 C 105 133, 40 131, -48 141 C -40 133, -32 123, -22 135 Z" fill="#14532D" />
+        <path d="M-46 140 C 10 128, 70 128, 130 140 L 120 146 C 70 137, 10 137, -38 146 Z" fill="#0F3F22" />
+        <rect x="14" y="146" width="52" height="24" fill="#1E293B" />
+        <rect x="8" y="168" width="64" height="5" fill="#B91C1C" />
+
+        <!-- Roof 5 (Bottom Tier) -->
+        <path d="M-35 183 C 5 168, 40 166, 75 168 C 105 168, 142 183, 150 190 C 120 181, 40 179, -62 190 C -52 181, -42 168, -35 183 Z" fill="#14532D" />
+        <path d="M-60 189 C 5 174, 75 174, 148 189 L 138 196 C 75 184, 5 184, -50 196 Z" fill="#0F3F22" />
+        <!-- Bottom Base Walls -->
+        <rect x="8" y="196" width="64" height="30" fill="#1E293B" />
+        <rect x="32" y="206" width="16" height="20" fill="#0F172A" />
+        <!-- Stone Base Foundation -->
+        <path d="M-5 226 L 85 226 L 95 245 L -15 245 Z" fill="#64748B" />
+    </g>
+
+    <!-- ================= 3. TRADITIONAL JAPANESE TORII GATE ================= -->
+    <g id="torii-gate" transform="translate(305, 235) scale(0.92)">
+        <!-- Base Foundation Stones (Kamebara) -->
+        <ellipse cx="25" cy="180" rx="9" ry="4" fill="#334155" />
+        <ellipse cx="105" cy="180" rx="9" ry="4" fill="#334155" />
+        <rect x="18" y="172" width="14" height="8" rx="2" fill="#1E293B" />
+        <rect x="98" y="172" width="14" height="8" rx="2" fill="#1E293B" />
+
+        <!-- Pillars (Hashira) with slight inward taper -->
+        <path d="M20 174 L 24 38 L 32 38 L 28 174 Z" fill="url(#torii-red)" />
+        <path d="M26 174 L 29 38 L 32 38 L 28 174 Z" fill="#991B1B" opacity="0.6" />
+
+        <path d="M100 174 L 96 38 L 104 38 L 108 174 Z" fill="url(#torii-red)" />
+        <path d="M106 174 L 102 38 L 104 38 L 108 174 Z" fill="#991B1B" opacity="0.6" />
+
+        <!-- Lower Tie Beam (Nuki) -->
+        <rect x="5" y="58" width="120" height="10" rx="1.5" fill="url(#torii-red)" />
+        <rect x="5" y="66" width="120" height="2" fill="#7F1D1D" />
+        <!-- Wedge Keys (Kusabi) -->
+        <rect x="17" y="56" width="4" height="14" fill="#1E293B" />
+        <rect x="31" y="56" width="4" height="14" fill="#1E293B" />
+        <rect x="95" y="56" width="4" height="14" fill="#1E293B" />
+        <rect x="109" y="56" width="4" height="14" fill="#1E293B" />
+
+        <!-- Central Tablet Strut (Gakuzuka) -->
+        <rect x="61" y="38" width="8" height="20" fill="#1E293B" />
+        <rect x="62" y="40" width="6" height="16" fill="#F59E0B" />
+
+        <!-- Supporting Lintel (Shimaki) -->
+        <path d="M-2 36 L 132 36 L 130 44 L 0 44 Z" fill="#991B1B" />
+
+        <!-- Upper Curved Main Lintel (Kasagi) with Upward Swooping Tips -->
+        <path d="M-12 26
+                 C 25 32, 105 32, 142 26
+                 C 145 22, 147 24, 143 36
+                 C 105 40, 25 40, -13 36
+                 C -17 24, -15 22, -12 26 Z"
+              fill="url(#torii-red)" />
+        <!-- Black Top Ridge Cap -->
+        <path d="M-13 26 C 25 31, 105 31, 143 26 L 141 23 C 105 28, 25 28, -11 23 Z" fill="#0F172A" />
+    </g>
+
+    <!-- ================= 4. SAKURA CHERRY BLOSSOMS & BRANCHES ================= -->
+    <g id="sakura-branches">
+        <!-- Main Branch 1 (Bottom Right sweeping inward) -->
+        <path d="M540 370 C 470 380, 410 395, 340 405 C 310 410, 280 405, 250 420"
+              stroke="#451A03" stroke-width="6.5" stroke-linecap="round" fill="none" opacity="0.85" />
+        <path d="M480 375 C 440 350, 420 330, 390 315"
+              stroke="#542408" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.85" />
+        <path d="M380 400 C 355 385, 335 375, 310 365"
+              stroke="#542408" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85" />
+        <path d="M430 340 C 420 310, 405 295, 385 285"
+              stroke="#451A03" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8" />
+
+        <!-- Blossom Clusters -->
+        <!-- Cluster near Pagoda Base -->
+        <use href="#sakura-blossom" x="480" y="340" transform="scale(1.1)" />
+        <use href="#sakura-blossom" x="450" y="325" transform="scale(0.85) rotate(25 450 325)" />
+        <use href="#sakura-blossom" x="510" y="320" transform="scale(0.9) rotate(45 510 320)" />
+        <use href="#sakura-blossom" x="430" y="355" transform="scale(0.95) rotate(-15 430 355)" />
+        <use href="#sakura-bud" x="415" y="310" transform="rotate(-30 415 310)" />
+        <use href="#sakura-bud" x="470" y="300" transform="rotate(20 470 300)" />
+
+        <!-- Cluster around Torii Base -->
+        <use href="#sakura-blossom" x="390" y="390" transform="scale(1.2) rotate(12 390 390)" />
+        <use href="#sakura-blossom" x="355" y="375" transform="scale(1.0) rotate(-28 355 375)" />
+        <use href="#sakura-blossom" x="325" y="395" transform="scale(1.15) rotate(40 325 395)" />
+        <use href="#sakura-blossom" x="370" y="415" transform="scale(0.85) rotate(70 370 415)" />
+        <use href="#sakura-blossom" x="295" y="410" transform="scale(0.95) rotate(-10 295 410)" />
+        <use href="#sakura-blossom" x="260" y="420" transform="scale(1.05) rotate(15 260 420)" />
+        <use href="#sakura-bud" x="330" y="360" transform="rotate(-45 330 360)" />
+        <use href="#sakura-bud" x="275" y="395" transform="rotate(10 275 395)" />
+
+        <!-- Dense Bottom Edge Floral Cushion (Matches Reference Sakura Trim) -->
+        <use href="#sakura-blossom" x="530" y="410" transform="scale(1.3) rotate(35 530 410)" />
+        <use href="#sakura-blossom" x="495" y="415" transform="scale(1.2) rotate(-20 495 415)" />
+        <use href="#sakura-blossom" x="460" y="425" transform="scale(1.25) rotate(15 460 425)" />
+        <use href="#sakura-blossom" x="425" y="428" transform="scale(1.15) rotate(50 425 428)" />
+
+        <!-- Gentle Floating Petals drifting on the wind (Zero Text Interference) -->
+        <ellipse cx="230" cy="380" rx="4.5" ry="7.5" transform="rotate(35 230 380)" fill="url(#sakura-petal)" opacity="0.75" />
+        <ellipse cx="280" cy="335" rx="4" ry="7" transform="rotate(-40 280 335)" fill="url(#sakura-petal)" opacity="0.7" />
+        <ellipse cx="340" cy="305" rx="3.5" ry="6.5" transform="rotate(18 340 305)" fill="url(#sakura-petal)" opacity="0.65" />
+        <ellipse cx="380" cy="240" rx="3.5" ry="6" transform="rotate(-55 380 240)" fill="url(#sakura-petal)" opacity="0.6" />
+        <ellipse cx="445" cy="180" rx="3" ry="5.5" transform="rotate(22 445 180)" fill="url(#sakura-petal)" opacity="0.55" />
+    </g>
+</svg>

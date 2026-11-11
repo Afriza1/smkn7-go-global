@@ -6,6 +6,9 @@
     {{-- B. Hero Section --}}
     @include('components.hero')
 
+    {{-- Sambutan Kepala Sekolah --}}
+    @include('components.principal-remarks')
+
     {{-- C. Akses Cepat (10 Feature Cards with Varied Pastel Tones) --}}
     @include('components.quick-access')
 
